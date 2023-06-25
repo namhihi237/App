@@ -457,12 +457,13 @@ function setAssigneeValueWithParentReportID(reportID) {
     const report = ReportUtils.getReport(reportID);
     const isDefault = !(ReportUtils.isChatRoom(report) || ReportUtils.isPolicyExpenseChat(report));
     const participants = lodashGet(report, 'participants', []);
+    const participantAccountIDs = lodashGet(report, 'participantAccountIDs', []);
     const hasMultipleParticipants = participants.length > 1;
     if (!isDefault || hasMultipleParticipants || report.parentReportID) {
         return;
     }
 
-    Onyx.merge(ONYXKEYS.TASK, {assignee: participants[0]});
+    Onyx.merge(ONYXKEYS.TASK, {assignee: participants[0], assigneeAccountID: participantAccountIDs[0]});
 }
 
 /**

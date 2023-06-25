@@ -88,7 +88,7 @@ function NewTaskPage(props) {
 
         // If we don't have an assignee and we are creating a task from a report
         // this allows us to auto assign a participant of the report.
-        if (!props.task.assignee && props.task.parentReportID) {
+        if ((!props.task.assignee || !props.task.assigneeAccountID) && props.task.parentReportID) {
             TaskUtils.setAssigneeValueWithParentReportID(props.task.parentReportID);
         }
 
