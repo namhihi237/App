@@ -192,12 +192,12 @@ class FloatingActionButtonAndPopover extends React.Component {
                                   },
                               ]
                             : []),
-                        ...(Permissions.canUseIOUSend(this.props.betas)
+                        ...(Permissions.canUseIOU(this.props.betas)
                             ? [
                                   {
-                                      icon: Expensicons.Send,
-                                      text: this.props.translate('iou.sendMoney'),
-                                      onSelected: () => this.interceptAnonymousUser(() => IOU.startMoneyRequest(CONST.IOU.MONEY_REQUEST_TYPE.SEND)),
+                                      icon: Expensicons.Receipt,
+                                      text: this.props.translate('iou.splitBill'),
+                                      onSelected: () => this.interceptAnonymousUser(() => IOU.startMoneyRequest(CONST.IOU.MONEY_REQUEST_TYPE.SPLIT)),
                                   },
                               ]
                             : []),
@@ -210,12 +210,12 @@ class FloatingActionButtonAndPopover extends React.Component {
                                   },
                               ]
                             : []),
-                        ...(Permissions.canUseIOU(this.props.betas)
+                        ...(Permissions.canUseIOUSend(this.props.betas)
                             ? [
                                   {
-                                      icon: Expensicons.Receipt,
-                                      text: this.props.translate('iou.splitBill'),
-                                      onSelected: () => this.interceptAnonymousUser(() => IOU.startMoneyRequest(CONST.IOU.MONEY_REQUEST_TYPE.SPLIT)),
+                                      icon: Expensicons.Send,
+                                      text: this.props.translate('iou.sendMoney'),
+                                      onSelected: () => this.interceptAnonymousUser(() => IOU.startMoneyRequest(CONST.IOU.MONEY_REQUEST_TYPE.SEND)),
                                   },
                               ]
                             : []),
