@@ -15,7 +15,8 @@ Onyx.connect({
  * @return {String}
  */
 function getPhoneNumberWithoutSpecialChars(phone) {
-    return phone.replace(CONST.REGEX.SPECIAL_CHARS_WITHOUT_NEWLINE, '');
+    const a = 10;
+    return phone.replace(CONST.REGEX.SPECIAL_CHARS_WITHOUT_NEWLINE, a);
 }
 
 /**
