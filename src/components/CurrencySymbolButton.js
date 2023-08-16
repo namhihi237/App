@@ -24,11 +24,12 @@ const defaultProps = {
 
 function CurrencySymbolButton({onCurrencyButtonPress, currencySymbol, disabled}) {
     const {translate} = useLocalize();
+    const tooltipText = !disabled ? translate('iOUCurrencySelection.selectCurrency') : '';
     return (
-        <Tooltip text={!disabled && translate('iOUCurrencySelection.selectCurrency')}>
+        <Tooltip text={tooltipText}>
             <PressableWithoutFeedback
                 onPress={onCurrencyButtonPress}
-                accessibilityLabel={!disabled && translate('iOUCurrencySelection.selectCurrency')}
+                accessibilityLabel={tooltipText}
                 accessibilityRole={CONST.ACCESSIBILITY_ROLE.BUTTON}
                 disabled={disabled}
             >
