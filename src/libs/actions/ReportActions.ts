@@ -46,10 +46,10 @@ function getReportActionMessageRoomChange(originalMessage: Message, targetAccoun
     }
 
     const mentionTags = targetAccountIDs.map((accountID, index) => {
-        if (index === targetAccountIDs.length - 1) {
+        if (index === targetAccountIDs.length - 1 && index !== 0) {
             return `${Localize.translateLocal('common.and')} <mention-user accountID=${accountID}></mention-user>`;
         }
-        return `<mention-user accountID=${accountID}></mention-user>, `;
+        return `<mention-user accountID=${accountID}></mention-user>${targetAccountIDs.length > 1 ? ', ' : ''}`;
     });
 
     const html = `<muted-text>${Localize.translateLocal('common.invited')} ${mentionTags.join("")} </muted-text>`;
