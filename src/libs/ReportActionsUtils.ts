@@ -616,7 +616,16 @@ function isNotifiableReportAction(reportAction: OnyxEntry<ReportAction>): boolea
     return actions.includes(reportAction.actionName);
 }
 
+function isRoomChangeLog(reportAction: OnyxEntry<ReportAction>): boolean {
+    const reportActionName = reportAction?.actionName;
+    return (
+        reportActionName === CONST.REPORT.ACTIONS.TYPE.ROOMCHANGELOG.INVITE_TO_ROOM  ||
+        reportActionName === CONST.REPORT.ACTIONS.TYPE.ROOMCHANGELOG.REMOVE_FROM_ROOM
+    );
+}
+
 export {
+    isRoomChangeLog,
     extractLinksFromMessageHtml,
     getAllReportActions,
     getIOUReportIDFromReportActionPreview,

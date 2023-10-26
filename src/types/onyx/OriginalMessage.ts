@@ -148,6 +148,11 @@ type OriginalMessagePolicyChangeLog = {
     originalMessage: unknown;
 };
 
+type OriginalMessageRoomChangeLog = {
+    actionName: ValueOf<typeof CONST.REPORT.ACTIONS.TYPE.ROOMCHANGELOG>;
+    originalMessage: unknown;
+};
+
 type OriginalMessagePolicyTask = {
     actionName:
         | typeof CONST.REPORT.ACTIONS.TYPE.TASKEDITED
@@ -180,7 +185,8 @@ type OriginalMessage =
     | OriginalMessagePolicyChangeLog
     | OriginalMessagePolicyTask
     | OriginalMessageModifiedExpense
-    | OriginalMessageReimbursementQueued;
+    | OriginalMessageReimbursementQueued
+    | OriginalMessageRoomChangeLog;
 
 export default OriginalMessage;
 export type {ChronosOOOEvent, Decision, Reaction, ActionName};

@@ -154,6 +154,7 @@ export default {
         expensifyTermsOfService: 'Expensify Terms of Service',
         members: 'Members',
         invite: 'Invite',
+        invited: 'Invited',
         here: 'here',
         date: 'Date',
         dob: 'Date of birth',
@@ -266,6 +267,8 @@ export default {
         tbd: 'TBD',
         selectCurrency: 'Select a currency',
         card: 'Card',
+        user: 'user',
+        users: 'usuarias'
     },
     location: {
         useCurrent: 'Use current location',

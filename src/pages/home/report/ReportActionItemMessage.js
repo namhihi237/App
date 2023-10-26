@@ -9,6 +9,7 @@ import * as ReportUtils from '../../../libs/ReportUtils';
 import * as ReportActionsUtils from '../../../libs/ReportActionsUtils';
 import reportActionPropTypes from './reportActionPropTypes';
 import withLocalize, {withLocalizePropTypes} from '../../../components/withLocalize';
+import * as ReportActions from '../../../libs/actions/ReportActions';
 
 const propTypes = {
     /** The report action */
@@ -36,9 +37,15 @@ const defaultProps = {
 };
 
 function ReportActionItemMessage(props) {
-    const messages = _.compact(props.action.previousMessage || props.action.message);
+    let messages = _.compact(props.action.previousMessage || props.action.message);
     const isAttachment = ReportUtils.isReportMessageAttachment(_.last(messages));
     const isIOUReport = ReportActionsUtils.isMoneyRequestAction(props.action);
+    const isRoomChangeLog = ReportActionsUtils.isRoomChangeLog(props.action);
+    if (isRoomChangeLog) {
+        const targetAccountIDs = props.action.originalMessage.targetAccountIDs;
+        messages = [ReportActions.getReportActionMessageRoomChange(messages[0], targetAccountIDs)];
+    }
+
     let iouMessage;
     if (isIOUReport) {
         const iouReportID = lodashGet(props.action, 'originalMessage.IOUReportID');

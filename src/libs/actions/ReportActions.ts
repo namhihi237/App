@@ -3,7 +3,8 @@ import ONYXKEYS from '../../ONYXKEYS';
 import CONST from '../../CONST';
 import * as ReportActionUtils from '../ReportActionsUtils';
 import * as ReportUtils from '../ReportUtils';
-import ReportAction from '../../types/onyx/ReportAction';
+import ReportAction, {Message} from '../../types/onyx/ReportAction';
+import * as Localize from "../Localize"
 
 function clearReportActionErrors(reportID: string, reportAction: ReportAction) {
     const originalReportID = ReportUtils.getOriginalReportID(reportID, reportAction);
@@ -34,7 +35,35 @@ function clearReportActionErrors(reportID: string, reportAction: ReportAction) {
     });
 }
 
+/**
+ * @param originalMessage
+ * @param targetAccountIDs
+ * @returns
+ */
+function getReportActionMessageRoomChange(originalMessage: Message, targetAccountIDs: number[]) {
+    if (targetAccountIDs.length === 0) {
+        return originalMessage;
+    }
+
+    const mentionTags = targetAccountIDs.map((accountID, index) => {
+        if (index === targetAccountIDs.length - 1) {
+            return `${Localize.translateLocal('common.and')} <mention-user accountID=${accountID}></mention-user>`;
+        }
+        return `<mention-user accountID=${accountID}></mention-user>, `;
+    });
+
+    const html = `<muted-text>${Localize.translateLocal('common.invited')} ${mentionTags.join("")} </muted-text>`;
+
+    const message: Message = {
+        ...originalMessage,
+        html
+    };
+
+    return message;
+}
+
 export {
     // eslint-disable-next-line import/prefer-default-export
     clearReportActionErrors,
+    getReportActionMessageRoomChange
 };
